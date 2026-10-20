@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-bg-deep: #080808;
+    --color-bg-secondary: #111111;
+    --color-bg-card: #141414;
+    --color-bg-charcoal: #191919;
+    --color-gold-deep: #e0a800;
+    --color-gold-bright: #ffc928;
+    --color-gold-glow: rgba(255, 201, 40, 0.35);
+    --color-gold-subtle: rgba(255, 201, 40, 0.12);
+    --color-gold-border: rgba(255, 201, 40, 0.22);
+    --color-text-white: #ffffff;
+    --color-text-muted: #b7b7b7;
+    --color-text-darker: #7a7a7a;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    background-color: var(--color-bg-deep);
+    color: var(--color-text-white);
+    overflow-x: hidden;
+  }
+}
+
+/* Custom interactive styles */
+.gold-glow-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-glow-hover:hover {
+  color: var(--color-gold-bright);
+  text-shadow: 0 0 16px rgba(255, 201, 40, 0.45);
+}
+
+.gold-border-card {
+  border: 1px solid rgba(255, 201, 40, 0.15);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gold-border-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 201, 40, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(255, 201, 40, 0.12);
+}
+
+.gold-gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 201, 40, 0.3) 0%, rgba(224, 168, 0, 0.1) 50%, rgba(255, 201, 40, 0.2) 100%);
+  padding: 1px;
+  border-radius: 1rem;
+}
+
+.gold-gradient-border-inner {
+  background: #111111;
+  border-radius: calc(1rem - 1px);
+}
+
+/* Floating animation for WhatsApp CTA & Hero elements */
+@keyframes softFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 201, 40, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 201, 40, 0.45);
+  }
+}
+
+.animate-soft-float {
+  animation: softFloat 4s ease-in-out infinite;
+}
+
+.animate-gold-pulse {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Reduced motion preference respect */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-soft-float,
+  .animate-gold-pulse {
+    animation: none !important;
+  }
+}
